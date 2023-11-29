@@ -22,22 +22,26 @@ def hello_world():
     return jsonify({'message': 'You reached hellow world'})
 
 
-@app.route("/search")
+@app.route("/search", methods = ['POST'])
 def search():
-    search_term = request.args.get('search')
+    data = request.get_json()
+    limit_no = 10 if data['verses'] == '' else data['verses']
+    print(limit_no)
+
     connection = psycopg2.connect(user=os.getenv("POSTGRES_USER"),
                                 password=os.getenv("POSTGRES_CRED"),
                                 host="127.0.0.1",
                                 port="5432",
                                 database="mydb")
     cursor = connection.cursor()
-    ps_quer = "Select * from bible limit 5"
-    embds = model.encode(search_term).tolist()
-    my_query = f"SELECT citation, text FROM bible ORDER BY embedding <-> '{embds}' LIMIT 10;"
+    embds = model.encode(data['searchTerm']).tolist()
+    my_query = f"SELECT citation, text FROM bible ORDER BY embedding <-> '{embds}' LIMIT {limit_no};"
     cursor.execute(my_query)
     collect = [{'citation': a, 'text': b} for (a, b) in cursor.fetchall()]
-    # for (a, b) in cursor.fetchall():
-    #     collection.append({'citation': a, 'text': b})
 
     connection.close()
     return jsonify(collect)
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')

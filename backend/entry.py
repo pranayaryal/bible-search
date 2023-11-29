@@ -19,7 +19,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 @app.route('/')
 @cross_origin()
 def hello_world():
-    return jsonify({'message': 'You reached hellow world'})
+    return jsonify({'message': 'You reached index page'})
 
 
 @app.route("/search", methods = ['POST'])

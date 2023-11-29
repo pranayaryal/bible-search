@@ -7,12 +7,14 @@ import Navbar from '@/components/Navbar'
 
 export default function Home() {
   const [search, setSearch] = useState('')
+  const [searchText, setSearchText] = useState('Search')
   const [verses, setVerses] = useState([])
   const [dropDown, setDropDown] = useState(false)
   const [ dropVal, setDropVal ] = useState('')
 
   const callBackend = async () => {
-    const resp = await fetch('http://localhost:5000/search', {
+    setSearchText('Searching ...')
+    const resp = await fetch('http://bibleproject.test/search', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -23,20 +25,17 @@ export default function Home() {
     })
     const data = await resp.json()
     setVerses(data)
+    setSearchText('Search')
 
   }
-
-  useEffect(() => {
-    console.log(`Console logging from useEffect ${search}`)
-
-  }, [search])
 
   return (
     <main
       className='px-24 py-12 flex flex-col'
     >
       <Navbar />
-      <div className='flex flex-row items-center space-x-8 rounded-xl mt-16'>
+      <h1></h1>
+      <div className='flex flex-row justify-center items-center space-x-8 rounded-xl mt-16'>
         {/* <input type="text" name="search" className='w-48 border border-gray-300 focus:ring-blue-500'/> */}
         <input 
           type="text"
@@ -55,7 +54,7 @@ export default function Home() {
           type="submit"
           className='bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-md text-sm px-3 py-2'
           onClick={() => callBackend()}
-        >Search</button>
+        >{searchText}</button>
 
       </div>
       <div className='grid grid-cols-4 gap-y-8 gap-x-8 mt-8'>

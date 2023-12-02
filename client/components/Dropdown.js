@@ -1,10 +1,5 @@
-import { useState } from "react";
-
-
 
 const Dropdown = ({ setDropDown, setDropVal, dropVal, dropDown }) => {
-  // const [dropDown, setDropDown] = useState(false)
-  // const [ dropVal, setDropVal ] = useState('')
 
   const collapseAndSet = (val) => {
     setDropVal(val)
@@ -30,7 +25,7 @@ const Dropdown = ({ setDropDown, setDropVal, dropVal, dropDown }) => {
         <div className="absolute left-0 z-10 mt-2 w-44 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1" role="none">
             {[5, 10, 15, 20, 25].map(s => {
-              return <p className="text-gray-700 block px-4 py-2 text-sm hover:bg-blue-100"
+              return <p key={s} className="text-gray-700 block px-4 py-2 text-sm hover:bg-blue-100"
                 onClick={() => collapseAndSet(s)}>{s}</p>
             })
             }

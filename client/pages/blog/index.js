@@ -2,9 +2,9 @@ import Navbar from "@/components/Navbar";
 
 const Blog = () => {
   return (
-    <div className="px-24 py-12">
+    <div className="px-8 md:px-24 py-8 md:py-12">
       <Navbar />
-      <h1 className="w-[90%] md:max-w-[1300px] ml-auto mr-auto mt-16 text-center text-4xl">How this search was created</h1>
+      <h1 className="w-[90%] md:max-w-[1300px] ml-auto mr-auto mt-16 text-center text-3xl md:text-4xl">How this search was created</h1>
       <div className="w-[90%] md:max-w-[1300px] ml-auto mr-auto flex justify-center mt-8">
         <div className="leading-relaxed">
           <p className="mt-4">This is a semantic search of the bible where we look for meaning instead of an exact match</p>

@@ -24,7 +24,7 @@ const Dropdown = ({ setDropDown, setDropVal, dropVal, dropDown }) => {
       {dropDown &&
         <div className="absolute left-0 z-10 mt-2 w-44 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1" role="none">
-            {[5, 10, 15, 20, 25].map(s => {
+            {[5, 10, 15, 20, 25, 30].map(s => {
               return <p key={s} className="text-gray-700 block px-4 py-2 text-sm hover:bg-blue-100"
                 onClick={() => collapseAndSet(s)}>{s}</p>
             })

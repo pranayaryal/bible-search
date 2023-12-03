@@ -185,7 +185,7 @@ const Chat = () => {
           )}
           <button
             onClick={handleButtonClick}
-            className="bg-gray-300 w-14 h-14 rounded-full flex items-center justify-center hover:scale-105 hover:shadow-xl transition duration-200 shadow-lg">
+            className="bg-teal-100 w-14 h-14 rounded-full flex items-center justify-center hover:scale-105 hover:shadow-xl transition duration-200 shadow-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

@@ -86,7 +86,7 @@ export default function Home() {
           {verses &&
             verses.map(v => {
               return (
-                <div key={v.citation} className='border text-xs lg:text-sm border-gray-300 rounded-xl px-4 py-4 shadow-sm'>
+                <div key={v.citation} className='border text-xs lg:text-sm border-gray-300 rounded-md md:rounded-xl px-4 py-4 shadow-sm'>
                   <p>{v.citation}</p>
                   <p className='mt-3'>{v.text}</p>
                 </div>

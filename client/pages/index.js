@@ -11,7 +11,7 @@ export default function Home() {
   const [searchText, setSearchText] = useState('Search')
   const [verses, setVerses] = useState([])
   const [dropDown, setDropDown] = useState(false)
-  const [dropVal, setDropVal] = useState('')
+  const [dropVal, setDropVal] = useState('10')
   const [err, setErr] = useState("")
 
 
@@ -26,7 +26,7 @@ export default function Home() {
     }
     setErr('')
     try {
-      const resp = await fetch('http://localhost:5000/search', {
+      const resp = await fetch('http://bibleproject.test/search', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -55,10 +55,10 @@ export default function Home() {
   return (
     <div>
       <main
-        className='px-24 py-12 flex flex-col'
+        className='px-6 md:px-24 py-8 md:py-12 flex flex-col'
       >
         <Navbar />
-        <div className='relative flex flex-row justify-center items-center space-x-8 rounded-xl mt-16'>
+        <div className='relative flex flex-col gap-y-3 md:flex-row justify-center items-center md:space-x-8 rounded-xl mt-8 md:mt-16'>
           {/* <input type="text" name="search" className='w-48 border border-gray-300 focus:ring-blue-500'/> */}
           <input
             type="text"
@@ -68,7 +68,7 @@ export default function Home() {
             onKeyDown={() => setErr("")}
             autoFocus
           />
-          <span className="absolute left-[28em] top-10 text-sm text-red-400">{err}</span>
+          <span className="absolute left-[40em] top-10 text-xs text-red-400">{err}</span>
 
           <Dropdown setDropDown={setDropDown}
             setDropVal={setDropVal}
@@ -82,11 +82,11 @@ export default function Home() {
           >{searchText}</button>
 
         </div>
-        <div className='grid grid-cols-4 gap-y-8 gap-x-8 mt-8'>
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-y-3 md:gap-y-8 md:gap-x-8 mt-8'>
           {verses &&
             verses.map(v => {
               return (
-                <div key={v.citation} className='border text-sm border-gray-300 rounded-xl px-4 py-4 shadow-sm'>
+                <div key={v.citation} className='border text-xs md:text-sm border-gray-300 rounded-xl px-4 py-4 shadow-sm'>
                   <p>{v.citation}</p>
                   <p className='mt-3'>{v.text}</p>
                 </div>
@@ -97,8 +97,9 @@ export default function Home() {
 
 
         </div>
-        <div className='text-center mt-4 text-sm'>
-          <p>Note: This is semantic search of the Bible (KJV) and the results may not be fully accurate</p>
+
+        <div className='md:text-center mt-8 md:mt-4 text-xs'>
+          <p>Note: This is semantic search of the Bible (KJV) and the results may not be fully accurate.</p>
 
         </div>
 

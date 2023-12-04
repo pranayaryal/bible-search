@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { useState, useEffect } from 'react'
 import Dropdown from '@/components/Dropdown'
-import Navbar from '@/components/Navbar'
 import Chat from '@/components/Chat'
 
 
@@ -53,13 +52,12 @@ export default function Home() {
 
 
   return (
-    <div>
-      <main
-        className='px-6 lg:px-24 py-8 lg:py-12 flex flex-col'
-      >
-        <Navbar />
-        <div className='relative flex flex-col gap-y-3 md:flex-row justify-center items-center md:space-x-8 rounded-xl mt-8 md:mt-16'>
-          {/* <input type="text" name="search" className='w-48 border border-gray-300 focus:ring-blue-500'/> */}
+    <main
+      className='px-6 lg:px-24 mt-4 lg:mt-8 flex flex-col'
+    >
+      <div className='flex flex-col space-y-6 md:space-y-0 md:flex-row justify-center items-left md:space-x-4 rounded-xl mt-4 md:mt-4'>
+        {/* <input type="text" name="search" className='w-48 border border-gray-300 focus:ring-blue-500'/> */}
+        <div className='relative'>
           <input
             type="text"
             id="search-txt"
@@ -68,8 +66,10 @@ export default function Home() {
             onKeyDown={() => setErr("")}
             autoFocus
           />
-          <span className="absolute left-[40em] top-10 text-xs text-red-400">{err}</span>
+          <span className="absolute left-0 top-10 text-xs text-red-400">{err}</span>
+        </div>
 
+        <div className='flex flex-row space-x-4'>
           <Dropdown setDropDown={setDropDown}
             setDropVal={setDropVal}
             dropVal={dropVal}
@@ -80,32 +80,31 @@ export default function Home() {
             className='bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-md text-sm px-3 py-2'
             onClick={() => callBackend()}
           >{searchText}</button>
-
-        </div>
-        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-3 md:gap-y-6 lg:gap-y-8 md:gap-x-6 lg:gap-x-8 mt-8'>
-          {verses &&
-            verses.map(v => {
-              return (
-                <div key={v.citation} className='border text-xs lg:text-sm border-gray-300 rounded-md md:rounded-xl px-4 py-4 shadow-sm'>
-                  <p>{v.citation}</p>
-                  <p className='mt-3'>{v.text}</p>
-                </div>
-              )
-            })
-
-          }
-
-
         </div>
 
-        <div className='md:text-center mt-8 md:mt-4 text-xs'>
-          <p>Note: This is semantic search of the Bible (KJV) and the results may not be fully accurate.</p>
+      </div>
+      <div className='md:max-w-[1300px] ml-auto mr-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-3 md:gap-y-6 lg:gap-y-8 md:gap-x-6 lg:gap-x-8 mt-8'>
+        {verses &&
+          verses.map(v => {
+            return (
+              <div key={v.citation} className='border text-xs lg:text-sm border-gray-300 rounded-md md:rounded-xl px-4 py-4 shadow-sm'>
+                <p>{v.citation}</p>
+                <p className='mt-3'>{v.text}</p>
+              </div>
+            )
+          })
 
-        </div>
+        }
 
 
-      </main>
-      <Chat />
-    </div>
+      </div>
+
+      <div className='md:text-center mt-12 md:mt-12 text-xs'>
+        <p>Note: This is semantic search of the Bible (KJV) and the results may not be fully accurate.</p>
+
+      </div>
+
+
+    </main>
   )
 }

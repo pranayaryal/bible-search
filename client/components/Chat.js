@@ -135,7 +135,7 @@ const Chat = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="mb-4 rounded-xl shadow-2xl bg-white flex flex-col overflow-hidden mx-4 md:mx-0">
+            className="mb-4 rounded-xl shadow-2xl bg-white flex flex-col w-[350px] md:w-full mx-4 md:mx-0">
               <div className="p-4 bg-blue-100">
                 <h2 className="text-gray-500 font-bold text-xl ">Have something to say?</h2>
                 <small className="text-xs text-gray-500 mb-10">Go ahead</small>

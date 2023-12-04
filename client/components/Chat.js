@@ -147,7 +147,7 @@ const Chat = () => {
                   value={formState.email.value}
                   onChange={(e) => onChangeHandler("email", e.target.value)}
                   className="text-black rounded-md border-gray-200 py-1 px-2 focus:outline-none focus:border-gray-400 placeholder:text-sm"
-                  placeholder="johndoe@xyz.com"
+                  placeholder="arpan@xyz.com"
                 />
                 <small className="h-4 min-h-4 text-red-500 font-semibold">{formState.email.error && formState.email.error}</small>
                 
@@ -159,7 +159,7 @@ const Chat = () => {
                   value={formState.message.value}
                   onChange={(e) => onChangeHandler("message", e.target.value)}
                   className="text-black rounded-md border border-gray-200 py-1 px-2 focus:outline-none focus:border-gray-400 placeholder:text-sm"
-                  placeholder="Your message"
+                  placeholder="Type your message"
             
                 />
                 <small className="h-4 min-h-4 text-red-500 font-semibold mb-4">{formState.message.error && formState.message.error}</small>

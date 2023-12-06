@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Chat = () => {
@@ -6,6 +6,14 @@ const Chat = () => {
   const [success, setSuccess] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
+  const emailInput = useRef(null) 
+
+  useEffect(() => {
+      if (open) {
+        emailInput.current.focus()
+      }
+
+  }, [open])
 
   const [formState, setFormState] = useState({
     email: {
@@ -143,7 +151,8 @@ const Chat = () => {
               <div className="content p-6 flex flex-col">
                 <label className="text-sm font-normal text-black mb-2">Email address</label>
                 <input 
-                  type="email"
+                  type="text"
+                  ref={emailInput}
                   value={formState.email.value}
                   onChange={(e) => onChangeHandler("email", e.target.value)}
                   className="text-black rounded-md border-gray-200 py-1 px-2 focus:outline-none focus:border-gray-400 placeholder:text-sm"

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Dropdown from '@/components/Dropdown'
 import Chat from '@/components/Chat'
 
@@ -13,6 +13,8 @@ export default function Home() {
   const [dropVal, setDropVal] = useState('10')
   const [err, setErr] = useState("")
 
+  const textRef = useRef(null)
+  
 
   const callBackend = async () => {
     if (search === '') {
@@ -50,6 +52,10 @@ export default function Home() {
     console.log(err)
   }, [err])
 
+  useEffect(() => {
+    textRef.current?.focus()
+  }, [])
+
 
   return (
     <main
@@ -60,6 +66,7 @@ export default function Home() {
         <div className='relative'>
           <input
             type="text"
+            ref={textRef}
             id="search-txt"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[345px] px-3 py-2" placeholder="Search the Bible (KJV)" required
             onChange={(e) => setSearch(e.target.value)}
